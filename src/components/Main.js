@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Home from "./Home";
 import Scroll from "./Scroll";
 import Likes from "./Likes";
@@ -6,6 +6,9 @@ import Friends from "./Friends";
 import { Routes, Route } from "react-router-dom";
 
 function Main() {
+    const [restaurantData, setRestaurantData] = useState([]);
+
+    
     return (
         <Routes>
             <Route path="/" element={<Home />} />
