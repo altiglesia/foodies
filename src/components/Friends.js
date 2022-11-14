@@ -1,8 +1,13 @@
 import React from "react";
+import Map from "./Map";
+import FriendsListContainer from "./FriendsListContainer";
 
 function Friends() {
     return(
-        <div></div>
+        <div>
+            <Map />
+            <FriendsListContainer />
+        </div>
     )
 }
 

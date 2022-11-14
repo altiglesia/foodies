@@ -1,7 +1,7 @@
 import React from "react";
 import RestaurantPost from "./RestaurantPost";
 
-function Crawl() {
+function Crawl( restaurantData ) {
 // pass down restaurantData from Main.js
 
     return (
