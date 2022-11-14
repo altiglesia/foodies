@@ -1,9 +1,9 @@
 import React from "react";
 
-function Likes() {
+function Faves() {
     return(
         <div></div>
     )
 }
 
-export default Likes;
+export default Faves;

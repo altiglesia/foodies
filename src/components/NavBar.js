@@ -5,8 +5,8 @@ function NavBar() {
         <nav>
             <ul>
                 <NavLink to="/">home</NavLink>
-                <NavLink to="/scroll">scroll</NavLink>
-                <NavLink to="/likes">likes</NavLink>
+                <NavLink to="/crawl">crawl</NavLink>
+                <NavLink to="/faves">faves</NavLink>
                 <NavLink to="/friends">friends</NavLink>
             </ul>
         </nav>
