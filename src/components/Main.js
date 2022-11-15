@@ -8,7 +8,7 @@ import { Routes, Route } from "react-router-dom";
 
 function Main() {
     const [restaurantData, setRestaurantData] = useState([]);
-    const [restaurantImages, setRestaurantImages] = useState([]);
+    // const [onViewRestaurants, setOnViewRestaurants] = useState([]);
 
     useEffect(() => {
         fetch("http://localhost:9292/restaurants")
@@ -19,19 +19,19 @@ function Main() {
             .catch(err => console.error(err))
     }, []);
 
-    useEffect(() => {
-        fetch("http://localhost:9292/restaurant_images")
-            .then(res => res.json())
-            .then(data => {
-                return setRestaurantImages(data)
-            })
-            .catch(err => console.error(err))
-    }, []);
+    // useEffect(() => {
+    //     fetch(`http://localhost:9292/restaurant/${.id}/images`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             return setRestaurantImages(data)
+    //         })
+    //         .catch(err => console.error(err))
+    // }, []);
     
     return (
         <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/crawl" element={<Crawl restaurantData={restaurantData} restaurantImages={restaurantImages} />} />
+            <Route path="/crawl" element={<Crawl restaurantData={restaurantData} />} />
             <Route path="/faves" element={<Faves />} />
             <Route path="/friends" element={<Friends />} />
             <Route path="/judgie" element={<Judgie />} />
