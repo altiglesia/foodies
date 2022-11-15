@@ -8,9 +8,10 @@
 }
 
 .App nav ul {
-  margin: 0;
-  padding: 0;
-  height: 5em;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 30px;
 }
 
 .App nav ul a {
@@ -20,10 +21,26 @@
   text-align: justify;
   display: inline-block;
   font-size: 1.66em;
-  font-family: 'Verdana';
-  font-weight: bold;
+  font-family: massilia, sans-serif;
+  font-weight: 400;
+  font-style: normal;
   margin: 0;
 }
+
+/* ========= CRAWL STYLING ========== */
+.restaurant-post {
+  font-family: massilia,sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#crawl {
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+/* ========= MAP STYLING ========== */
 
 #map {
   height: 500px;

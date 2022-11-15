@@ -9,7 +9,7 @@ function Map({ restaurantData }) {
         <div id="map">
             <h3>Where have your friends been judging?</h3>
 
-            <MapContainer center={[40.706027, -74.008835]} zoom={13} scrollWheelZoom={false}>
+            <MapContainer center={[40.706027, -74.008835]} zoom={13} scrollWheelZoom={true}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
