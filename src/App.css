@@ -50,3 +50,7 @@
   height: 50vw;
   width: 50vw;
 }
+
+#searchZipCode {
+  width: 200px;
+}
