@@ -24,3 +24,12 @@
   font-weight: bold;
   margin: 0;
 }
+
+#map {
+  height: 500px;
+}
+
+.leaflet-container {
+  height: 50vw;
+  width: 50vw;
+}
