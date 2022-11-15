@@ -27,13 +27,13 @@ function Main() {
     //         })
     //         .catch(err => console.error(err))
     // }, []);
-    
+
     return (
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/crawl" element={<Crawl restaurantData={restaurantData} />} />
             <Route path="/faves" element={<Faves />} />
-            <Route path="/friends" element={<Friends />} />
+            <Route path="/friends" element={<Friends restaurantData={restaurantData} />} />
             <Route path="/judgie" element={<Judgie />} />
         </Routes>
     );

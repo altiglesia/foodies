@@ -2,10 +2,10 @@ import React from "react";
 import Map from "./Map";
 import FriendsListContainer from "./FriendsListContainer";
 
-function Friends() {
-    return(
+function Friends({ restaurantData }) {
+    return (
         <div>
-            <Map />
+            <Map restaurantData={restaurantData} />
             <FriendsListContainer />
         </div>
     )
