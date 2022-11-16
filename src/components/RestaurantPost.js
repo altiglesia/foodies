@@ -52,6 +52,8 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
         .then(() => reFetchAllRestaurants());
     }
 
+    const numOfLikes = restaurant.reviews
+
     return (
         <div className="restaurant-post">
             <h3 id="restaurant-name">{restaurant.name}</h3>
