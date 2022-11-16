@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ImageGallery from 'react-image-gallery';
 
-function RestaurantPost({ restaurant, saveFaveRestaurant, addNewCommentToRestaurantData }) {
+function RestaurantPost({ restaurant, saveFaveRestaurant, addNewCommentToRestaurantData, onDeleteComment }) {
     // add button click events (must look at Sinatra notes to update DB reviews_table from frontend event)
     const [commentData, setCommentData] = useState({});
 
@@ -54,6 +54,14 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, addNewCommentToRestaur
         return imageObj
     })
 
+    const handleDeleteClick = (e) => {
+        console.log(e.target.value)
+        fetch(`http://localhost:9292/reviews/${e.target.value}`, {
+            method: "DELETE",
+        });
+        // onDeleteComment(restaurant.reviews)
+    }
+
     return (
         <div className="restaurant-post">
 
@@ -73,7 +81,11 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, addNewCommentToRestaur
 
                 <ul id="comments-list">
                     {restaurant.reviews.slice(-3).map(review => {
-                        return (<li key={review.id}>{review.review_detail_comment}</li>)
+                        return (
+                            <li key={review.id}>
+                                {review.review_detail_comment}
+                                <button onClick={handleDeleteClick} className="trash-can" value={review.id}>🗑</button>
+                            </li>)
                     })}
                     {/* {Object.entries(commentData).map(([comment, value]) => (
                         <li className="comments" key={comment}>

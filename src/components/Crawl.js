@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RestaurantPost from "./RestaurantPost";
 
-function Crawl({ restaurantData, saveFaveRestaurant, addNewCommentToRestaurantData }) {
+function Crawl({ restaurantData, saveFaveRestaurant, addNewCommentToRestaurantData, onDeleteComment }) {
     // pass down restaurantData and restaurant_images from Main.js
     // render all images to a post on the page
     // for each post, map out multiple images
@@ -18,6 +18,7 @@ function Crawl({ restaurantData, saveFaveRestaurant, addNewCommentToRestaurantDa
                         restaurant={restaurant}
                         saveFaveRestaurant={saveFaveRestaurant}
                         addNewCommentToRestaurantData={addNewCommentToRestaurantData}
+                        onDeleteComment={onDeleteComment}
                     />
                 )
             })}
