@@ -8,19 +8,21 @@ function RestaurantPost({ restaurant, saveFaveRestaurant }) {
         console.log(restaurant)
     }
 
-    // function handleSubmit(e) {
-    //     e.preventDefault()
-    //     fetch(`http://localhost:9292/${restaurant.id}`, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             Accept: "application/json",
-    //         },
-    //         body: JSON.stringify({
-                
-    //         })
-    //     })
-    // }
+    function handleSubmit(e) {
+        e.preventDefault()
+        fetch(`http://localhost:9292/restaurant/${restaurant.id}/reviews`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+            body: JSON.stringify({
+                restaurantId: restaurant.id,
+                userId: 1,
+                review_detail_comment: e.target
+            })
+        })
+    }
 
     // function handleChange(e) {
     //     console.log(e.target.value)
