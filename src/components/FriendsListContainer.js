@@ -1,9 +1,9 @@
 import React from "react";
 
 function FriendsListContainer() {
-    return(
+    return (
         <div>
-            <h1>"Friends List goes here"</h1>
+            {/* <h1>"Friends List goes here"</h1> */}
         </div>
     )
 }

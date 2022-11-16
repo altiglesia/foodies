@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import ChangeView from "./ChangeView"
+import RestaurantSearchResult from "./RestaurantSearchResult";
 
 const data = `10001,40.750633, -73.997177
 10002,40.715775, -73.986212
@@ -290,35 +291,46 @@ function Map() {
     }
 
     return (
-        <div id="map">
-            <h3>Where have your friends been judging?</h3>
-            <form onSubmit={handleSubmit}>
-                <input id="searchZipCode" type="number" step="1" size="5" min="10001" max="10282" placeholder="Enter a Manhattan ZipCode"></input>
-                <input type="submit" ></input>
-            </form>
-
-            <MapContainer center={positionCoordinates} zoom={15} scrollWheelZoom={true} >
-                <ChangeView center={positionCoordinates} zoom={18} />
-                <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                {nearestRestaurants.map(restaurant => {
-                    const coordinates = [restaurant.latitude, restaurant.longitude]
-                    // imageLink currently only works for 149 of the first restaurants. Need to be resized 
-                    // const imageLink = restaurant.images[0] ? restaurant.images[0].replace("500x500", "150x150") : null;
-                    return (
-                        <Marker key={restaurant.id} position={coordinates}>
-                            <Popup>
-                                <h4>{restaurant.name}</h4>
-                                <p>{restaurant.address}, {restaurant.neighborhood}</p>
-                                {/* <img src={imageLink}></img> */}
-                            </Popup>
-                        </Marker>
-                    )
+        <div>
+            <div id="nearbyRestaurantList">
+                {nearestRestaurants.slice(0, 6).map(restaurant => {
+                    return (<RestaurantSearchResult
+                        key={restaurant.id}
+                        restaurant={restaurant}
+                    />)
                 })}
-                <Marker position={positionCoordinates}></Marker>
-            </MapContainer>
+            </div>
+
+            <div id="map">
+                <h3>Where to judgie?</h3>
+                <form onSubmit={handleSubmit}>
+                    <input id="searchZipCode" type="number" step="1" size="5" min="10001" max="10282" placeholder="Enter a Manhattan ZipCode"></input>
+                    <input type="submit" ></input>
+                </form>
+
+                <MapContainer center={positionCoordinates} zoom={15} scrollWheelZoom={true} >
+                    <ChangeView center={positionCoordinates} zoom={18} />
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    {nearestRestaurants.map(restaurant => {
+                        const coordinates = [restaurant.latitude, restaurant.longitude]
+                        // imageLink currently only works for 149 of the first restaurants. Need to be resized 
+                        // const imageLink = restaurant.images[0] ? restaurant.images[0].replace("500x500", "150x150") : null;
+                        return (
+                            <Marker key={restaurant.id} position={coordinates}>
+                                <Popup>
+                                    <h4>{restaurant.name}</h4>
+                                    <p>{restaurant.address}, {restaurant.neighborhood}</p>
+                                </Popup>
+                            </Marker>
+                        )
+                    })}
+                    <Marker position={positionCoordinates}></Marker>
+                </MapContainer>
+            </div>
+
         </div>
     )
 }
