@@ -1,51 +1,49 @@
-import React, { useState, useReducer } from "react";
+import React, { useState } from "react";
 import ImageGallery from 'react-image-gallery';
 
-
-// const formReducer = (commentData, event) => {
-//     return {
-//       ...commentData,
-//       [event.name]: event.value
-//     }
-//    }
-
-function RestaurantPost({ restaurant, saveFaveRestaurant }) {
+function RestaurantPost({ restaurant, saveFaveRestaurant, addNewCommentToRestaurantData }) {
     // add button click events (must look at Sinatra notes to update DB reviews_table from frontend event)
-    const [commentData, setCommentData] = useState("");
-    // const [userData, setUserData] = useReducer(formReducer, {});
-    const [isPending, setIsPending] = useState(false);
+    const [commentData, setCommentData] = useState({});
 
     function saveFaveRestaurantClick() {
         saveFaveRestaurant(restaurant)
         console.log(restaurant)
+    }
+    // New Fetch for list of review_detail_comments
+    // function addNewCommentToRestaurantData() {
+    //     fetch(`http://localhost:9292/restaurant/${restaurant.id}/reviews`)
+    //         .then(res => res.json())
+    //         .then(console.log)
+    // }
+
+    function handleChange(e) {
+        // console.log("New Comment:", e.target.value, "Restaurant_id:", restaurant.id)
+        setCommentData({
+            restaurant_id: restaurant.id,
+            user_id: 1,
+            review_detail_comment: e.target.value
+        })
     }
 
     // post new review to reviews in backend
     function handleSubmit(e) {
         e.preventDefault();
 
-        setIsPending(true)
-        fetch(`http://localhost:9292/restaurant/${restaurant.id}/reviews`, {
+        fetch(`http://localhost:9292/restaurant/${commentData["restaurant_id"]}/reviews`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"},
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify({
-                restaurant_id: restaurant.id,
+                restaurant_id: commentData["restaurant_id"],
                 user_id: 1,
-                review_detail_comment: e.target.value
+                review_detail_comment: commentData["review_detail_comment"]
             })
         })
-        .then(() => {
-            console.log('new comment');
-            setIsPending(false)
-        })
-        // .then((newComment) => onAddComment(newComment));
-    }
-
-    function handleCommentChange(e) {
-        setCommentData({
-            comment: e.target.value
-        })
+            .then(res => res.json())
+            .then(data => {
+                addNewCommentToRestaurantData(data)
+            })
     }
 
     const imageGallery = restaurant.images.map(image => {
@@ -74,19 +72,20 @@ function RestaurantPost({ restaurant, saveFaveRestaurant }) {
             <div id="comments-section">
 
                 <ul id="comments-list">
-                    {Object.entries(commentData).map(([comment, value]) => (
+                    {restaurant.reviews.slice(-3).map(review => {
+                        return (<li key={review.id}>{review.review_detail_comment}</li>)
+                    })}
+                    {/* {Object.entries(commentData).map(([comment, value]) => (
                         <li className="comments" key={comment}>
                             {value}
                         </li>
-                    ))}
+                    ))} */}
                 </ul>
 
                 <form id="post-comments" onSubmit={handleSubmit}>
-                    <input type="name" name="comment" placeholder="Add a comment..." className="add-a-comment" onChange={handleCommentChange}></input>
+                    <input type="name" name="comment" placeholder="Add a comment..." className="add-a-comment" onChange={handleChange} ></input>
+                    <button type="submit" className="add-a-comment">Post</button>
                 </form>
-                { !isPending && <button type="submit" form="post-comments" className="add-a-comment">Post</button> }
-                { isPending && <button type="submit" form="post-comments" className="add-a-comment">Posting comment...</button> }
-
             </div>
 
         </div>

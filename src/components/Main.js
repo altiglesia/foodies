@@ -49,12 +49,26 @@ function Main() {
         setFavoritedRestaurant([...favoritedRestaurant, fave]);
     };
 
+    function addNewCommentToRestaurantData(data) {
+        console.log("in Main: ", data)
+        const index = restaurantData.findIndex(el => el.id === data.restaurant_id)
+        const addedReview = [...restaurantData[index].reviews, data]
+        // console.log(addedReview)
+        setRestaurantData(addedReview)
+        // restaurantData[index].reviews = [...restaurantData[index].review, data]
+        // Find the restaurant obj within restaurantData State using restaurant_id within the data param
+        // Push the 
+        // setRestaurantData([...restaurantData])
+    }
+
     return (
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/crawl" element={<Crawl
                 restaurantData={restaurantData}
-                saveFaveRestaurant={saveFaveRestaurant} />} />
+                saveFaveRestaurant={saveFaveRestaurant}
+                addNewCommentToRestaurantData={addNewCommentToRestaurantData}
+            />} />
             <Route path="/faves" element={<Faves favoritedRestaurant={favoritedRestaurant} />} />
             <Route path="/friends" element={<Friends restaurantData={restaurantData} />} />
             <Route path="/judgie" element={<Judgie />} />
