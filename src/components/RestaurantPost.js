@@ -59,11 +59,11 @@ function RestaurantPost({ restaurant, saveFaveRestaurant }) {
     return (
         <div className="restaurant-post">
 
-            <h3>{restaurant.name}</h3>
+            <h3 id="restaurant-name">{restaurant.name}</h3>
 
             <ImageGallery items={imageGallery} />
 
-            <h4>{restaurant.neighborhood}</h4>
+            <h4 id="restaurant-location">Neighborhood: {restaurant.neighborhood}</h4>
 
             <button className="interactive-buttons" id="dislike">👎</button>
 
@@ -71,20 +71,24 @@ function RestaurantPost({ restaurant, saveFaveRestaurant }) {
 
             <button className="interactive-buttons" id="like">❤️</button>
 
-            <ul id="comments-section">
-                {Object.entries(commentData).map(([comment, value]) => (
-                    <li key={comment}>
-                        {value}
-                    </li>
-                ))}
-            </ul>
+            <div id="comments-section">
 
-            <form id="comments-section" onSubmit={handleSubmit}>
-                <input type="name" name="comment" placeholder="leave a comment" onChange={handleCommentChange}></input>
-            </form>
-            { !isPending && <button type="submit" form="comments-section">post</button> }
-            { isPending && <button type="submit" form="comments-section">posting comment...</button> }
-        
+                <ul id="comments-list">
+                    {Object.entries(commentData).map(([comment, value]) => (
+                        <li className="comments" key={comment}>
+                            {value}
+                        </li>
+                    ))}
+                </ul>
+
+                <form id="post-comments" onSubmit={handleSubmit}>
+                    <input type="name" name="comment" placeholder="Add a comment..." className="add-a-comment" onChange={handleCommentChange}></input>
+                </form>
+                { !isPending && <button type="submit" form="post-comments" className="add-a-comment">Post</button> }
+                { isPending && <button type="submit" form="post-comments" className="add-a-comment">Posting comment...</button> }
+
+            </div>
+
         </div>
     )
 }

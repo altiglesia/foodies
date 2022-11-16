@@ -31,12 +31,6 @@
 }
 
 /* ========= CRAWL STYLING ========== */
-.restaurant-post {
-  font-family: massilia, sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
 #crawl {
   width: 100%;
   max-width: 580px;
@@ -44,16 +38,78 @@
   padding: 0 30px;
 }
 
+
+.restaurant-post {
+  font-family: massilia, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  border: 0.5px solid rgb(234, 234, 234); 
+  border-radius: 4px;
+  padding: 1px;
+  margin: 10px;
+  box-shadow: 2px 2px 2px rgb(212, 212, 212);
+  width: 560px;
+}
+
+#restaurant-name {
+  margin-left: 10px;
+}
+
+#restaurant-location {
+  margin-left: 5px;
+}
+
+
 #comments-section {
   font-family: massilia, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 1em;
 }
 
 .interactive-buttons {
   background-color: transparent;
-  border: 1px double black;
-  border-radius: 20px;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 15px;
   height: 30px;
   margin: 3px;
+}
+
+/* #post-comments{
+  display: block;
+  padding: 15px 0 3px;
+} */
+
+
+li#post-comments {
+  max-width: 500px;
+}
+
+input.add-a-comment{
+  font-family: massilia, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  margin: 0.5em;
+  display: flex;
+  width: 536px;
+}
+
+button.add-a-comment{
+  font-family: massilia, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+  color: #337ab7;
+  background-color: white;
+  border: none;
+  height: 20px;
+  display: flex;
+  border-radius: 3px;
+  margin: 0.25em;
+  cursor: pointer;
 }
 
 /* ========= MAP STYLING ========== */
