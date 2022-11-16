@@ -22,7 +22,7 @@ function Map({ restaurantData }) {
                 {restaurantData.map(restaurant => {
                     const coordinates = [restaurant.latitude, restaurant.longitude]
                     // imageLink currently only works for 149 of the first restaurants. Need to be resized 
-                    const imageLink = restaurant.restaurant_images[0] ? restaurant.restaurant_images[0]["image_url"].replace("500x500", "150x150") : null;
+                    const imageLink = restaurant.images[0] ? restaurant.images[0].replace("500x500", "150x150") : null;
                     return (
                         <Marker key={restaurant.id} position={coordinates}>
                             <Popup>
