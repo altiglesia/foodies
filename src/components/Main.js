@@ -44,22 +44,29 @@ function Main() {
         if (remainingHeightinPixels > 1.2) return;
         setGoFetch(true)
     }
+    // ReFetch for posted comments
+    function reFetchAllRestaurants() {
+        fetch(`http://localhost:9292/restaurants?limit=${resultsPerPage * pageCount}&page=1`)
+            .then(res => res.json())
+            .then(data => setRestaurantData(data))
+            .catch(err => console.error(err))
+    }
 
     function saveFaveRestaurant(fave) {
         setFavoritedRestaurant([...favoritedRestaurant, fave]);
     };
 
-    function addNewCommentToRestaurantData(data) {
-        console.log("in Main: ", data)
-        const index = restaurantData.findIndex(el => el.id === data.restaurant_id)
-        const addedReview = [...restaurantData[index].reviews, data]
-        // console.log(addedReview)
-        setRestaurantData(addedReview)
-        // restaurantData[index].reviews = [...restaurantData[index].review, data]
-        // Find the restaurant obj within restaurantData State using restaurant_id within the data param
-        // Push the 
-        // setRestaurantData([...restaurantData])
-    }
+    // function addNewCommentToRestaurantData(data) {
+    //     console.log("in Main: ", data)
+    //     const index = restaurantData.findIndex(el => el.id === data.restaurant_id)
+    //     const addedReview = [...restaurantData[index].reviews, data]
+    //     // console.log(addedReview)
+    //     setRestaurantData(addedReview)
+    //     // restaurantData[index].reviews = [...restaurantData[index].review, data]
+    //     // Find the restaurant obj within restaurantData State using restaurant_id within the data param
+    //     // Push the 
+    //     // setRestaurantData([...restaurantData])
+    // }
 
     return (
         <Routes>
@@ -67,7 +74,7 @@ function Main() {
             <Route path="/crawl" element={<Crawl
                 restaurantData={restaurantData}
                 saveFaveRestaurant={saveFaveRestaurant}
-                addNewCommentToRestaurantData={addNewCommentToRestaurantData}
+                reFetchAllRestaurants={reFetchAllRestaurants}
             />} />
             <Route path="/faves" element={<Faves favoritedRestaurant={favoritedRestaurant} />} />
             <Route path="/friends" element={<Friends restaurantData={restaurantData} />} />
