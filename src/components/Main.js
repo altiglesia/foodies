@@ -11,7 +11,6 @@ function Main() {
     const [favoritedRestaurant, setFavoritedRestaurant] = useState([]);
     const [goFetch, setGoFetch] = useState(false);
     const [pageCount, setPageCount] = useState(1)
-    // const [onViewRestaurants, setOnViewRestaurants] = useState([]);
     const resultsPerPage = 10
 
     useEffect(() => {
@@ -56,17 +55,6 @@ function Main() {
         setFavoritedRestaurant([...favoritedRestaurant, fave]);
     };
 
-    // function addNewCommentToRestaurantData(data) {
-    //     console.log("in Main: ", data)
-    //     const index = restaurantData.findIndex(el => el.id === data.restaurant_id)
-    //     const addedReview = [...restaurantData[index].reviews, data]
-    //     // console.log(addedReview)
-    //     setRestaurantData(addedReview)
-    //     // restaurantData[index].reviews = [...restaurantData[index].review, data]
-    //     // Find the restaurant obj within restaurantData State using restaurant_id within the data param
-    //     // Push the 
-    //     // setRestaurantData([...restaurantData])
-    // }
 
     return (
         <Routes>

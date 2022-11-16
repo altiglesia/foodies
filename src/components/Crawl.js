@@ -21,7 +21,6 @@ function Crawl({ restaurantData, saveFaveRestaurant, reFetchAllRestaurants }) {
                     />
                 )
             })}
-
         </div>
     )
 }

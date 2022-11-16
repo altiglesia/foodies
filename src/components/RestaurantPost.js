@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import ImageGallery from 'react-image-gallery';
 
 function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants }) {
-    // add button click events (must look at Sinatra notes to update DB reviews_table from frontend event)
+
     const [commentData, setCommentData] = useState({});
 
     function saveFaveRestaurantClick() {
         saveFaveRestaurant(restaurant)
-        console.log(restaurant)
     }
 
     function handleChange(e) {
@@ -18,10 +17,8 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
         })
     }
 
-    // post new review to reviews in backend
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(e.target.comment)
 
         fetch(`http://localhost:9292/restaurant/${commentData["restaurant_id"]}/reviews`, {
             method: "POST",
@@ -38,7 +35,9 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
             .then(data => {
                 reFetchAllRestaurants()
             })
-        setCommentData({ review_detail_comment: "" })
+            .then(() => reFetchAllRestaurants())
+            e.target.comment.value = ""
+
     }
 
     const imageGallery = restaurant.images.map(image => {
@@ -49,13 +48,19 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
         return imageObj
     })
 
-    function handleDelete(e) {
-        console.log(e.target.name)
+    const handleDeleteClick = (e) => {
+        fetch(`http://localhost:9292/reviews/${e.target.value}`, {
+            method: "DELETE",
+        })
+        .then(res => res.json())
+        .then(() => reFetchAllRestaurants());
     }
+
+    const numOfLikes = restaurant.reviews
+
 
     return (
         <div className="restaurant-post">
-
             <h3 id="restaurant-name">{restaurant.name}</h3>
             <ImageGallery items={imageGallery} />
             <h4 id="restaurant-location">Neighborhood: {restaurant.neighborhood}</h4>
@@ -65,14 +70,16 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
             <div id="comments-section">
                 <ul id="comments-list">
                     {restaurant.reviews.slice(-3).map(review => {
-                        return (<li key={review.id}>
-                            {review.review_detail_comment}
-                            <input onClick={handleDelete} type="submit" name={review.id} value="Delete"></input>
-                        </li>)
+                        return (
+                            <li key={review.id}>
+                                {review.review_detail_comment}
+                                <button onClick={handleDeleteClick} className="trash-can" value={review.id}>🗑</button>
+                            </li>)
                     })}
                 </ul>
                 <form id="post-comments" onSubmit={handleSubmit}>
-                    <input type="name" name="comment" placeholder="Add a comment..." className="add-a-comment" onChange={handleChange} value={commentData.review_detail_comment}></input>
+                    <input type="name" name="comment" placeholder="Add a comment..." className="add-a-comment" onChange={handleChange}>
+                    </input>
                     <button type="submit" className="add-a-comment">Post</button>
                 </form>
             </div>
