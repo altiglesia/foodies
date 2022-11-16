@@ -7,6 +7,7 @@ import { Route } from "react-router-dom"
 function App() {
   return (
     <div className="App">
+      <h1 className="foodies">foodies</h1>
       <link rel="stylesheet" href="https://use.typekit.net/nhq7iwi.css"></link>
       {/* set state of the context in useEffect of App */}
       <NavBar />
