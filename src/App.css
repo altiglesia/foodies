@@ -4,10 +4,10 @@
 /* ========= NAVBAR STYLING ========== */
 
 .App nav {
-  /* background-color: rgb(8, 35, 61); */
   top: 0px;
   left: 0px;
   max-height: 100px;
+  background-color: rgb(244, 244, 244);
 }
 
 .App nav ul {
@@ -28,6 +28,20 @@
   font-weight: 400;
   font-style: normal;
   margin: 0;
+}
+
+.foodies {
+  font-size: 18px;
+  font-family: "Caflisch Script Pro";
+  color: rgba(207, 78, 78, 0.85);
+  line-height: 1.2;
+  -moz-transform: matrix( 5.09496618449703,0,0,5.09496618449703,0,0);
+  -webkit-transform: matrix( 5.09496618449703,0,0,5.09496618449703,0,0);
+  -ms-transform: matrix( 5.09496618449703,0,0,5.09496618449703,0,0);
+  position: absolute;
+  left: 145px;
+  top: 35px;
+  z-index: 2;
 }
 
 /* ========= CRAWL STYLING ========== */
@@ -126,3 +140,5 @@ button.add-a-comment{
 #searchZipCode {
   width: 200px;
 }
+
+
