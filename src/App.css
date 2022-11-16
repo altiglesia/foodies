@@ -1,3 +1,6 @@
+/* Style Import for Image Gallery */
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
 /* ========= NAVBAR STYLING ========== */
 
 .App nav {
@@ -40,6 +43,7 @@
   margin: 0 auto;
   padding: 0 30px;
 }
+
 /* ========= MAP STYLING ========== */
 
 #map {
