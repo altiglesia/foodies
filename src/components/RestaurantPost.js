@@ -32,8 +32,12 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
             })
         })
             .then(res => res.json())
+            .then(data => {
+                reFetchAllRestaurants()
+            })
             .then(() => reFetchAllRestaurants())
             e.target.comment.value = ""
+
     }
 
     const imageGallery = restaurant.images.map(image => {
@@ -54,6 +58,7 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
 
     const numOfLikes = restaurant.reviews
 
+
     return (
         <div className="restaurant-post">
             <h3 id="restaurant-name">{restaurant.name}</h3>
@@ -72,7 +77,6 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
                             </li>)
                     })}
                 </ul>
-
                 <form id="post-comments" onSubmit={handleSubmit}>
                     <input type="name" name="comment" placeholder="Add a comment..." className="add-a-comment" onChange={handleChange}>
                     </input>

@@ -35,9 +35,9 @@
   font-family: "Caflisch Script Pro";
   color: rgba(207, 78, 78, 0.85);
   line-height: 1.2;
-  -moz-transform: matrix( 5.09496618449703,0,0,5.09496618449703,0,0);
-  -webkit-transform: matrix( 5.09496618449703,0,0,5.09496618449703,0,0);
-  -ms-transform: matrix( 5.09496618449703,0,0,5.09496618449703,0,0);
+  -moz-transform: matrix(5.09496618449703, 0, 0, 5.09496618449703, 0, 0);
+  -webkit-transform: matrix(5.09496618449703, 0, 0, 5.09496618449703, 0, 0);
+  -ms-transform: matrix(5.09496618449703, 0, 0, 5.09496618449703, 0, 0);
   position: absolute;
   left: 145px;
   top: 35px;
@@ -57,7 +57,7 @@
   font-family: massilia, sans-serif;
   font-weight: 400;
   font-style: normal;
-  border: 0.5px solid rgb(234, 234, 234); 
+  border: 0.5px solid rgb(234, 234, 234);
   border-radius: 4px;
   padding: 1px;
   margin: 10px;
@@ -99,7 +99,7 @@ li#post-comments {
   max-width: 500px;
 }
 
-input.add-a-comment{
+input.add-a-comment {
   font-family: massilia, sans-serif;
   font-weight: 300;
   font-style: normal;
@@ -111,7 +111,7 @@ input.add-a-comment{
   width: 536px;
 }
 
-button.add-a-comment{
+button.add-a-comment {
   font-family: massilia, sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -130,6 +130,8 @@ button.add-a-comment{
 
 #map {
   height: 500px;
+  float: left;
+  width: 48%
 }
 
 .leaflet-container {
@@ -141,4 +143,24 @@ button.add-a-comment{
   width: 200px;
 }
 
+#nearbyRestaurantList {
+  height: 100%;
+  margin-left: 2%;
+  width: 30%;
+  float: left;
+}
 
+.restaurantResultContainer {
+  border: 1px solid rgb(234, 234, 234);
+  border-radius: 4px;
+  margin: 10px;
+  box-shadow: 2px 2px 2px rgb(212, 212, 212);
+}
+
+.restaurantResultContainer>* {
+  padding-left: 5%;
+}
+
+.restaurantResultContainer span {
+  font-weight: 600;
+}
