@@ -68,12 +68,20 @@ function Main() {
     //     // setRestaurantData([...restaurantData])
     // }
 
+    const onDeleteComment = (deletedComment) => {
+        console.log(restaurantData.reviews.id)
+        // const updatedCommentsList = restaurantData.reviews.filter(
+        //     (review) => review.id !== deletedComment.id);
+        //     setRestaurantData(updatedCommentsList);
+    };
+
     return (
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/crawl" element={<Crawl
                 restaurantData={restaurantData}
                 saveFaveRestaurant={saveFaveRestaurant}
+                onDeleteComment={onDeleteComment}
                 reFetchAllRestaurants={reFetchAllRestaurants}
             />} />
             <Route path="/faves" element={<Faves favoritedRestaurant={favoritedRestaurant} />} />
