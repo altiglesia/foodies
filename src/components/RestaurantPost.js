@@ -17,7 +17,7 @@ function RestaurantPost({ restaurant, saveFaveRestaurant }) {
     //             Accept: "application/json",
     //         },
     //         body: JSON.stringify({
-                
+
     //         })
     //     })
     // }
