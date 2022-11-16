@@ -31,7 +31,7 @@ function Main() {
     }, [goFetch])
     // Function to fetch more items and append the restaurant array to the current restaurantData state. Then sets goFetch to false and ups page count by 1.
     function fetchMoreItems() {
-        fetch(`http://localhost:9292/restaurants?limit=${resultsPerPage}&page=${pageCount}`)
+        fetch(`http://localhost:9292/restaurants?limit=${resultsPerPage}&page=${pageCount + 1}`)
             .then(res => res.json())
             .then(data => setRestaurantData([...restaurantData, ...data]))
         setGoFetch(false);
