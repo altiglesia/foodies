@@ -44,6 +44,18 @@
   padding: 0 30px;
 }
 
+#comments-section {
+  font-family: massilia, sans-serif;
+}
+
+.interactive-buttons {
+  background-color: transparent;
+  border: 1px double black;
+  border-radius: 20px;
+  height: 30px;
+  margin: 3px;
+}
+
 /* ========= MAP STYLING ========== */
 
 #map {
