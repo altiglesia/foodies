@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ImageGallery from 'react-image-gallery';
 
-function RestaurantPost({ restaurant, saveFaveRestaurant, addNewCommentToRestaurantData }) {
+function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants }) {
     // add button click events (must look at Sinatra notes to update DB reviews_table from frontend event)
     const [commentData, setCommentData] = useState({});
 
@@ -28,6 +28,7 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, addNewCommentToRestaur
     // post new review to reviews in backend
     function handleSubmit(e) {
         e.preventDefault();
+        console.log(e.target.comment)
 
         fetch(`http://localhost:9292/restaurant/${commentData["restaurant_id"]}/reviews`, {
             method: "POST",
@@ -42,8 +43,11 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, addNewCommentToRestaur
         })
             .then(res => res.json())
             .then(data => {
-                addNewCommentToRestaurantData(data)
+                // addNewCommentToRestaurantData(data)
+                reFetchAllRestaurants()
+                // setCommentData({})
             })
+        setCommentData({ review_detail_comment: "" })
     }
 
     const imageGallery = restaurant.images.map(image => {
@@ -83,7 +87,7 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, addNewCommentToRestaur
                 </ul>
 
                 <form id="post-comments" onSubmit={handleSubmit}>
-                    <input type="name" name="comment" placeholder="Add a comment..." className="add-a-comment" onChange={handleChange} ></input>
+                    <input type="name" name="comment" placeholder="Add a comment..." className="add-a-comment" onChange={handleChange} value={commentData.review_detail_comment}></input>
                     <button type="submit" className="add-a-comment">Post</button>
                 </form>
             </div>
