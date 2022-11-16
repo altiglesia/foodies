@@ -32,11 +32,8 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
             })
         })
             .then(res => res.json())
-            .then(data => {
-                reFetchAllRestaurants()
-            })
             .then(() => reFetchAllRestaurants())
-            e.target.comment.value = ""
+        e.target.comment.value = ""
 
     }
 
@@ -52,11 +49,13 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
         fetch(`http://localhost:9292/reviews/${e.target.value}`, {
             method: "DELETE",
         })
-        .then(res => res.json())
-        .then(() => reFetchAllRestaurants());
+            .then(res => res.json())
+            .then(() => reFetchAllRestaurants());
     }
 
-    const numOfLikes = restaurant.reviews
+    const numOfLikes = restaurant.reviews.filter(el => el.likes === true).length
+    const numOfDislikes = restaurant.reviews.filter(el => el.dislikes === true).length
+    // debugger
 
 
     return (
@@ -64,12 +63,12 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
             <h3 id="restaurant-name">{restaurant.name}</h3>
             <ImageGallery items={imageGallery} />
             <h4 id="restaurant-location">Neighborhood: {restaurant.neighborhood}</h4>
-            <button className="interactive-buttons" id="dislike">👎</button>
+            <button className="interactive-buttons" id="dislike">{numOfDislikes}👎</button>
             <button className="interactive-buttons" id="fave" onClick={saveFaveRestaurantClick}>⭐️</button>
-            <button className="interactive-buttons" id="like">❤️</button>
+            <button className="interactive-buttons" id="like">{numOfLikes}❤️</button>
             <div id="comments-section">
                 <ul id="comments-list">
-                    {restaurant.reviews.slice(-3).map(review => {
+                    {restaurant.reviews.filter(rev => rev.review_detail_comment !== null).slice(-3).map(review => {
                         return (
                             <li key={review.id}>
                                 {review.review_detail_comment}
