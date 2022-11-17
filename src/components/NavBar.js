@@ -11,9 +11,9 @@ function NavBar({ isLoggedIn, setIsLoggedIn }) {
             <h1 className="foodies">foodies</h1>
             <ul className="navlinks">
                 <NavLink to="/">home</NavLink>
-                <NavLink to="/crawl">crawl</NavLink>
-                <NavLink to="/faves">faves</NavLink>
-                <NavLink to="/friends">friends</NavLink>
+                <NavLink to={isLoggedIn ? "/crawl" : "/login"}>crawl</NavLink>
+                <NavLink to={isLoggedIn ? "/faves" : "/login"}>faves</NavLink>
+                <NavLink to={isLoggedIn ? "/friends" : "/login"}>friends</NavLink>
                 {/* <NavLink to="/judgie">judgie</NavLink> */}
                 {isLoggedIn ? <NavLink to="/login" onClick={handleClick}>logout</NavLink> : <NavLink to="/login">login</NavLink>}
             </ul>
