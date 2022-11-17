@@ -302,10 +302,10 @@ function Map() {
             </div>
 
             <div id="map">
-                <h3>Where to judgie?</h3>
-                <form onSubmit={handleSubmit}>
+                <h3 className="enter-a-zipcode">Where to judgie?</h3>
+                <form onSubmit={handleSubmit} className="enter-a-zipcode">
                     <input id="searchZipCode" type="number" step="1" size="5" min="10001" max="10282" placeholder="Enter a Manhattan ZipCode"></input>
-                    <input type="submit" ></input>
+                    <input className="enter-a-zipcode" type="submit"></input>
                 </form>
 
                 <MapContainer center={positionCoordinates} zoom={15} scrollWheelZoom={true} >
