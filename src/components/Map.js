@@ -291,8 +291,13 @@ function Map() {
     }
 
     return (
-        <div>
-            <div id="nearbyRestaurantList">
+        <div id="map-page">
+            <div id="nearby-restaurant-list" className="map">
+                <h3 className="enter-a-zipcode">Where to judgie?</h3>
+                <form onSubmit={handleSubmit} className="enter-a-zipcode">
+                    <input id="searchZipCode" type="number" step="1" size="5" min="10001" max="10282" placeholder="Enter a Manhattan ZipCode"></input>
+                    <input className="enter-a-zipcode" type="submit"></input>
+                </form>
                 {nearestRestaurants.slice(0, 6).map(restaurant => {
                     return (<RestaurantSearchResult
                         key={restaurant.id}
@@ -301,12 +306,7 @@ function Map() {
                 })}
             </div>
 
-            <div id="map">
-                <h3 className="enter-a-zipcode">Where to judgie?</h3>
-                <form onSubmit={handleSubmit} className="enter-a-zipcode">
-                    <input id="searchZipCode" type="number" step="1" size="5" min="10001" max="10282" placeholder="Enter a Manhattan ZipCode"></input>
-                    <input className="enter-a-zipcode" type="submit"></input>
-                </form>
+            <div id="map-view" className="map">
 
                 <MapContainer center={positionCoordinates} zoom={15} scrollWheelZoom={true} >
                     <ChangeView center={positionCoordinates} zoom={18} />
@@ -330,6 +330,7 @@ function Map() {
                     <Marker position={positionCoordinates}></Marker>
                 </MapContainer>
             </div>
+
 
         </div>
     )
