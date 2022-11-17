@@ -4,6 +4,7 @@ import Crawl from "./Crawl";
 import Faves from "./Faves";
 import Friends from "./Friends";
 import Judgie from "./Judgie";
+import Login from "./Login";
 import { Routes, Route } from "react-router-dom";
 
 function Main() {
@@ -67,6 +68,7 @@ function Main() {
             <Route path="/faves" element={<Faves favoritedRestaurant={favoritedRestaurant} />} />
             <Route path="/friends" element={<Friends restaurantData={restaurantData} />} />
             <Route path="/judgie" element={<Judgie />} />
+            <Route path="/login" element={<Login />} />
         </Routes>
     );
 }
