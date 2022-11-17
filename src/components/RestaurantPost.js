@@ -53,19 +53,81 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
             .then(() => reFetchAllRestaurants());
     }
 
+    // Calculates number of likes and dislikes from the restaurant reviews
     const numOfLikes = restaurant.reviews.filter(el => el.likes === true).length
     const numOfDislikes = restaurant.reviews.filter(el => el.dislikes === true).length
-    // debugger
+    // Does current user like or dislike a particular restaurant?
+    const isLike = (restaurant.reviews.filter(el => el.user_id === 1).length === 0) ? null : restaurant.reviews.filter(el => el.user_id === 1)[0].likes
+    const isDislike = (restaurant.reviews.filter(el => el.user_id === 1).length === 0) ? null : restaurant.reviews.filter(el => el.user_id === 1)[0].dislikes
 
+    function handleLikeClick(e) {
+        console.log(e.target.name, "restaurant", restaurant.id, "review", isLike);
+        isLike || isDislike ? runPatchRequest(e.target.name) : runPostRequest(e.target.name);
+    }
+
+    function runPatchRequest(likeOrDislike) {
+        const notLikeOrDislike = likeOrDislike === "likes" ? "dislikes" : "likes";
+
+        console.log("running patch")
+        fetch(`http://localhost:9292/reviews?user=1&restaurant=${restaurant.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                [likeOrDislike]: true,
+                [notLikeOrDislike]: false,
+            })
+        })
+            .then(res => res.json())
+            .then(() => reFetchAllRestaurants())
+    }
+
+    function runPostRequest(likeOrDislike) {
+        console.log('running post')
+        const notLikeOrDislike = likeOrDislike === "likes" ? "dislikes" : "likes";
+
+        fetch(`http://localhost:9292/restaurant/${restaurant.id}/reviews`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                user_id: 1,
+                restaurant_id: restaurant.id,
+                [likeOrDislike]: true,
+                [notLikeOrDislike]: false,
+            })
+        })
+            .then(res => res.json())
+            .then(() => reFetchAllRestaurants())
+    }
 
     return (
         <div className="restaurant-post">
             <h3 id="restaurant-name">{restaurant.name}</h3>
             <ImageGallery items={imageGallery} />
             <h4 id="restaurant-location">Neighborhood: {restaurant.neighborhood}</h4>
-            <button className="interactive-buttons" id="dislike">{numOfDislikes}👎</button>
-            <button className="interactive-buttons" id="fave" onClick={saveFaveRestaurantClick}>⭐️</button>
-            <button className="interactive-buttons" id="like">{numOfLikes}❤️</button>
+            <button
+                className="interactive-buttons"
+                onClick={handleLikeClick}
+                name="dislikes"
+                style={isDislike ? { backgroundColor: "pink" } : null} // if user dislikes, set background color to pink
+            >{numOfDislikes}👎
+            </button>
+            <button
+                className="interactive-buttons"
+
+                onClick={saveFaveRestaurantClick}
+            >⭐️
+            </button>
+            <button
+                className="interactive-buttons"
+                onClick={handleLikeClick}
+                name="likes"
+                style={isLike ? { backgroundColor: "lightgreen" } : null} // if user likes, set background color to green
+            >{numOfLikes}❤️
+            </button>
             <div id="comments-section">
                 <ul id="comments-list">
                     {restaurant.reviews.filter(rev => rev.review_detail_comment !== null).slice(-3).map(review => {
