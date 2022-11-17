@@ -60,9 +60,16 @@
   border: 0.5px solid rgb(234, 234, 234);
   border-radius: 4px;
   padding: 1px;
+  padding-bottom: 1em;
   margin: 10px;
-  box-shadow: 2px 2px 2px rgb(212, 212, 212);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   width: 560px;
+  /* position: relative;
+  top: 1em; */
+}
+
+div.restaurant-post {
+  margin: 35px;
 }
 
 #restaurant-name {
@@ -75,10 +82,9 @@
 
 
 #comments-section {
-  font-family: massilia, sans-serif;
-  font-weight: 400;
+  font-family: roboto,sans-serif;
+  font-weight: 300;
   font-style: normal;
-  margin-bottom: 1em;
 }
 
 .interactive-buttons {
@@ -100,7 +106,7 @@ li#post-comments {
 }
 
 input.add-a-comment {
-  font-family: massilia, sans-serif;
+  font-family: roboto,sans-serif;
   font-weight: 300;
   font-style: normal;
   font-size: 15px;
@@ -115,7 +121,7 @@ button.add-a-comment {
   font-family: massilia, sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 15px;
+  font-size: 16px;
   color: #337ab7;
   background-color: white;
   border: none;
@@ -130,8 +136,12 @@ button.add-a-comment {
 
 #map {
   height: 500px;
-  float: left;
-  width: 48%
+  /* float: right; */
+  display: inline-block;
+  position: relative;
+  bottom: 13.6em;
+  width: 48%;
+  z-index: 0;
 }
 
 .leaflet-container {
@@ -141,20 +151,66 @@ button.add-a-comment {
 
 #searchZipCode {
   width: 200px;
+  height: 35px;
+  float: left;
+  font-family: roboto, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  border: none;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; 
+  border-radius: 2px;
+}
+
+h3.enter-a-zipcode {
+  position: relative;
+  z-index: 2;
+  right: 17em;
+  top: 5em;
+  font-family: massilia, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 25px;
+}
+
+form.enter-a-zipcode {
+  position: relative;
+  right: 26em;
+  top: 7em;
+}
+
+input.enter-a-zipcode {
+  font-family: massilia, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+  color: #337ab7;
+  border: none;
+  background-color: transparent;
+  height: 35px;
 }
 
 #nearbyRestaurantList {
   height: 100%;
   margin-left: 2%;
   width: 30%;
-  float: left;
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  top: 6em;
+  /* left: 10em; */
+  /* float: left; */
 }
 
 .restaurantResultContainer {
-  border: 1px solid rgb(234, 234, 234);
+  border: 1px solid transparent;
   border-radius: 4px;
   margin: 10px;
-  box-shadow: 2px 2px 2px rgb(212, 212, 212);
+  margin-top: 2em;
+  height: 125px;
+}
+
+.restaurantResultContainer:hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 .restaurantResultContainer>* {
@@ -162,5 +218,7 @@ button.add-a-comment {
 }
 
 .restaurantResultContainer span {
-  font-weight: 600;
+  font-family: roboto,sans-serif;
+  font-weight: 300;
+  font-style: normal;
 }
