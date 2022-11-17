@@ -4,31 +4,33 @@
 /* ========= NAVBAR STYLING ========== */
 
 nav#navbar h1 {
+  font-size: 15px;
+  font-family: "caflisch-script-pro";
+  color: rgba(207, 78, 78, 0.85);
+  -moz-transform: matrix(5.09496618449703, 0, 0, 5.09496618449703, 0, 0);
+  -webkit-transform: matrix(5.09496618449703, 0, 0, 5.09496618449703, 0, 0);
+  -ms-transform: matrix(5.09496618449703, 0, 0, 5.09496618449703, 0, 0);
+  left: 145px;
+  top: 35px;
+  line-height: 1.2;
   z-index: 6;
   position: fixed;
 }
 
 nav ul {
-  margin-bottom: 25%;
   top: 0;
   z-index: 5;
   position: fixed;
   background-color: rgb(247, 247, 247);
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 20px -7px;
-  /* display: inline-block; */
+  height: 8%;
 }
-
-/* @media screen {
-  nav ul {
-    position: fixed;
-  }
-} */
 
 .App nav ul a {
   color: rgba(207, 78, 78, 0.719);
   text-decoration: none;
-  padding: 1em 2em;
+  padding: 1em 2em 1em 2em;
   text-align: justify;
   display: inline-block;
   font-size: 1.66em;
@@ -38,29 +40,16 @@ nav ul {
 }
 
 ul.navlinks {
-  padding-left: 25%;
+  padding-left: 29%;
   padding-right: 25%;
+  padding-bottom: 0.25%;
+  padding-top: 0.05%;
   margin: 0px;
   max-height: 85.09px;
-  /* background-color: rgb(244, 244, 244); */
 }
 
 
 /* ========= LOGO ========= */
-
-.foodies {
-  font-size: 18px;
-  font-family: "caflisch-script-pro";
-  color: rgba(207, 78, 78, 0.85);
-  line-height: 1.2;
-  -moz-transform: matrix(5.09496618449703, 0, 0, 5.09496618449703, 0, 0);
-  -webkit-transform: matrix(5.09496618449703, 0, 0, 5.09496618449703, 0, 0);
-  -ms-transform: matrix(5.09496618449703, 0, 0, 5.09496618449703, 0, 0);
-  position: absolute;
-  left: 145px;
-  top: 35px;
-  z-index: 2;
-}
 
 /* ========= HOME & LOG-IN/OUT STYLING ========= */
 
@@ -68,7 +57,7 @@ ul.navlinks {
   width: 100%;
   max-width: 580px;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 6%;
   padding: 0 30px;
   border: 0.5px solid rgb(234, 234, 234);
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
