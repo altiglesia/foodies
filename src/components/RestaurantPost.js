@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ImageGallery from 'react-image-gallery';
+import { FiThumbsUp, FiStar, FiThumbsDown } from "react-icons/fi";
 
 function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants }) {
 
@@ -108,26 +109,27 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
             <h3 id="restaurant-name">{restaurant.name}</h3>
             <ImageGallery items={imageGallery} />
             <h4 id="restaurant-location">Neighborhood: {restaurant.neighborhood}</h4>
-            <button
-                className="interactive-buttons"
-                onClick={handleLikeClick}
-                name="dislikes"
-                style={isDislike ? { backgroundColor: "pink" } : null} // if user dislikes, set background color to pink
-            >{numOfDislikes}👎
-            </button>
-            <button
-                className="interactive-buttons"
-
-                onClick={saveFaveRestaurantClick}
-            >⭐️
-            </button>
-            <button
-                className="interactive-buttons"
-                onClick={handleLikeClick}
-                name="likes"
-                style={isLike ? { backgroundColor: "lightgreen" } : null} // if user likes, set background color to green
-            >{numOfLikes}❤️
-            </button>
+            <div className="interactive-buttons">
+                <button
+                    onClick={handleLikeClick}
+                    name="likes"
+                    style={isLike ? { backgroundColor: "lightgreen" } : null} // if user likes, set background color to green
+                >
+                    <FiThumbsUp />
+                    {numOfLikes}
+                </button>
+                <button
+                    onClick={handleLikeClick}
+                    name="dislikes"
+                    style={isDislike ? { backgroundColor: "pink" } : null} // if user dislikes, set background color to pink
+                >
+                    <FiThumbsDown />
+                    {numOfDislikes}
+                </button>
+                <button onClick={saveFaveRestaurantClick}> 
+                    <FiStar />
+                </button>
+            </div>
             <div id="comments-section">
                 <ul id="comments-list">
                     {restaurant.reviews.filter(rev => rev.review_detail_comment !== null).slice(-3).map(review => {
