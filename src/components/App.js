@@ -5,7 +5,7 @@ import Main from "./Main";
 // import { Route } from "react-router-dom"
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("user-token") ? true : false);
 
   return (
     <div className="App">
