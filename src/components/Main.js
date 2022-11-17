@@ -7,7 +7,7 @@ import Judgie from "./Judgie";
 import Login from "./Login";
 import { Routes, Route } from "react-router-dom";
 
-function Main() {
+function Main({ isLoggedIn, setIsLoggedIn }) {
     const [restaurantData, setRestaurantData] = useState([]);
     const [favoritedRestaurant, setFavoritedRestaurant] = useState([]);
     const [goFetch, setGoFetch] = useState(false);
@@ -68,7 +68,7 @@ function Main() {
             <Route path="/faves" element={<Faves favoritedRestaurant={favoritedRestaurant} />} />
             <Route path="/friends" element={<Friends restaurantData={restaurantData} />} />
             <Route path="/judgie" element={<Judgie />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
         </Routes>
     );
 }

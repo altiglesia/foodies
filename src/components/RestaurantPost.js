@@ -57,9 +57,14 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
     // Calculates number of likes and dislikes from the restaurant reviews
     const numOfLikes = restaurant.reviews.filter(el => el.likes === true).length
     const numOfDislikes = restaurant.reviews.filter(el => el.dislikes === true).length
+
     // Does current user like or dislike a particular restaurant?
     const isLike = (restaurant.reviews.filter(el => el.user_id === 1).length === 0) ? null : restaurant.reviews.filter(el => el.user_id === 1)[0].likes
     const isDislike = (restaurant.reviews.filter(el => el.user_id === 1).length === 0) ? null : restaurant.reviews.filter(el => el.user_id === 1)[0].dislikes
+    // debugger
+
+    // Does current user have a review of the restaurant?
+    const hasUserReviewed = restaurant.reviews.filter(el => el.user_id === 1)
 
     function handleLikeClick(e) {
         console.log(e.target.name, "restaurant", restaurant.id, "review", isLike);
@@ -70,38 +75,38 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
         const notLikeOrDislike = likeOrDislike === "likes" ? "dislikes" : "likes";
 
         console.log("running patch")
-        fetch(`http://localhost:9292/reviews?user=1&restaurant=${restaurant.id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                [likeOrDislike]: true,
-                [notLikeOrDislike]: false,
-            })
-        })
-            .then(res => res.json())
-            .then(() => reFetchAllRestaurants())
+        // fetch(`http://localhost:9292/reviews?user=1&restaurant=${restaurant.id}`, {
+        //     method: "PATCH",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         [likeOrDislike]: true,
+        //         [notLikeOrDislike]: false,
+        //     })
+        // })
+        //     .then(res => res.json())
+        //     .then(() => reFetchAllRestaurants())
     }
 
     function runPostRequest(likeOrDislike) {
         console.log('running post')
         const notLikeOrDislike = likeOrDislike === "likes" ? "dislikes" : "likes";
 
-        fetch(`http://localhost:9292/restaurant/${restaurant.id}/reviews`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                user_id: 1,
-                restaurant_id: restaurant.id,
-                [likeOrDislike]: true,
-                [notLikeOrDislike]: false,
-            })
-        })
-            .then(res => res.json())
-            .then(() => reFetchAllRestaurants())
+        //     fetch(`http://localhost:9292/restaurant/${restaurant.id}/reviews`, {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         },
+        //         body: JSON.stringify({
+        //             user_id: 1,
+        //             restaurant_id: restaurant.id,
+        //             [likeOrDislike]: true,
+        //             [notLikeOrDislike]: false,
+        //         })
+        //     })
+        //         .then(res => res.json())
+        //         .then(() => reFetchAllRestaurants())
     }
 
     return (
@@ -110,12 +115,13 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
             <ImageGallery items={imageGallery} />
             <h4 id="restaurant-location">Neighborhood: {restaurant.neighborhood}</h4>
             <div className="interactive-buttons">
+                <FiThumbsUp />
                 <button
                     onClick={handleLikeClick}
                     name="likes"
                     style={isLike ? { backgroundColor: "lightgreen" } : null} // if user likes, set background color to green
                 >
-                    <FiThumbsUp />
+
                     {numOfLikes}
                 </button>
                 <button
@@ -126,7 +132,7 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
                     <FiThumbsDown />
                     {numOfDislikes}
                 </button>
-                <button onClick={saveFaveRestaurantClick}> 
+                <button onClick={saveFaveRestaurantClick}>
                     <FiStar />
                 </button>
             </div>

@@ -6,7 +6,7 @@ function Home() {
         uname: "",
         email: "",
         pass: "",
-        passconf: ""
+        // passconf: ""
     })
     const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ function Home() {
                     uname: "",
                     email: "",
                     pass: "",
-                    passconf: ""
+                    // passconf: ""
                 })
                 navigate('/login');
             })
@@ -47,8 +47,8 @@ function Home() {
                 <input type="text" name="email" className="form" required onChange={handleChange} value={formData.email} />
                 <label>Password </label>
                 <input type="password" name="pass" className="form" required onChange={handleChange} value={formData.pass} />
-                <label>Password Confirm </label>
-                <input type="password" name="passconf" className="form" required onChange={handleChange} value={formData.passconf} />
+                {/* <label>Password Confirm </label> */}
+                {/* <input type="password" name="passconf" className="form" required onChange={handleChange} value={formData.passconf} /> */}
                 <input type="submit" />
             </form>
         </div>

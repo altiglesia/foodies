@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 
-function Login() {
+function Login({ isLoggedIn, setIsLoggedIn }) {
     const [formData, setFormData] = useState({
         uname: "",
         pass: ""
@@ -27,6 +27,8 @@ function Login() {
                     passconf: ""
                 })
                 if (res.message === "Success") {
+                    localStorage.setItem("user-token", res.user_id)
+                    setIsLoggedIn(true)
                     navigate('/crawl')
                 } else {
                     alert("Error! Invalid login")
