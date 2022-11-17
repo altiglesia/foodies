@@ -38,18 +38,18 @@ function Home() {
     }
 
     return (
-        <div className="form">
+        <div className="create-an-account">
             <h2>Create an Account</h2>
             <form onSubmit={handleSubmit}>
-                <label>Username </label>
+                <label>Username</label>
                 <input type="text" name="uname" className="form" required onChange={handleChange} value={formData.uname} />
-                <label>Email </label>
+                <label>Email</label>
                 <input type="text" name="email" className="form" required onChange={handleChange} value={formData.email} />
-                <label>Password </label>
+                <label>Password</label>
                 <input type="password" name="pass" className="form" required onChange={handleChange} value={formData.pass} />
                 {/* <label>Password Confirm </label> */}
                 {/* <input type="password" name="passconf" className="form" required onChange={handleChange} value={formData.passconf} /> */}
-                <input type="submit" />
+                <input type="submit" id="submit-btn"/>
             </form>
         </div>
     )
