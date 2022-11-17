@@ -3,8 +3,8 @@ import ImageGallery from 'react-image-gallery';
 import { FiThumbsUp, FiStar, FiThumbsDown } from "react-icons/fi";
 
 function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants }) {
-
     const [commentData, setCommentData] = useState({});
+    const currentUserId = parseInt(localStorage.getItem("user-token"));
 
     function saveFaveRestaurantClick() {
         saveFaveRestaurant(restaurant)
@@ -13,7 +13,7 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
     function handleChange(e) {
         setCommentData({
             restaurant_id: restaurant.id,
-            user_id: 1,
+            user_id: currentUserId,
             review_detail_comment: e.target.value
         })
     }
@@ -28,7 +28,7 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
             },
             body: JSON.stringify({
                 restaurant_id: commentData["restaurant_id"],
-                user_id: 1,
+                user_id: currentUserId,
                 review_detail_comment: commentData["review_detail_comment"]
             })
         })
@@ -59,15 +59,14 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
     const numOfDislikes = restaurant.reviews.filter(el => el.dislikes === true).length
 
     // Does current user like or dislike a particular restaurant?
-    const isLike = (restaurant.reviews.filter(el => el.user_id === 1).length === 0) ? null : restaurant.reviews.filter(el => el.user_id === 1)[0].likes
-    const isDislike = (restaurant.reviews.filter(el => el.user_id === 1).length === 0) ? null : restaurant.reviews.filter(el => el.user_id === 1)[0].dislikes
+    const isLike = (restaurant.reviews.filter(el => el.user_id === currentUserId).length === 0) ? null : restaurant.reviews.filter(el => el.user_id === currentUserId)[0].likes
+    const isDislike = (restaurant.reviews.filter(el => el.user_id === currentUserId).length === 0) ? null : restaurant.reviews.filter(el => el.user_id === currentUserId)[0].dislikes
 
     function handleLikeClick(e) {
         // Does current user have a review of the restaurant?
-        const hasUserReviewed = restaurant.reviews.filter(el => el.user_id === 1).length === 0 ? false : true;
+        const hasUserReviewed = restaurant.reviews.filter(el => el.user_id === currentUserId).length === 0 ? false : true;
         const likeOrDislike = e.target.parentElement.className;
         console.log(e.target.parentElement.className, "restaurant", restaurant.id, "has user reviewed?", hasUserReviewed);
-        // debugger
         hasUserReviewed ? runPatchRequest(likeOrDislike) : runPostRequest(likeOrDislike);
     }
 
@@ -75,7 +74,7 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
         const notLikeOrDislike = likeOrDislike === "likes" ? "dislikes" : "likes";
 
         console.log("running patch")
-        fetch(`http://localhost:9292/reviews?user=1&restaurant=${restaurant.id}`, {
+        fetch(`http://localhost:9292/reviews?user=${currentUserId}&restaurant=${restaurant.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
@@ -99,7 +98,7 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                user_id: 1,
+                user_id: currentUserId,
                 restaurant_id: restaurant.id,
                 [likeOrDislike]: true,
                 [notLikeOrDislike]: false,
