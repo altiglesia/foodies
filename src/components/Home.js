@@ -38,7 +38,7 @@ function Home() {
     }
 
     return (
-        <div className="create-an-account">
+        <div className="account">
             <h2>Create an Account</h2>
             <form onSubmit={handleSubmit}>
                 <label>Username</label>

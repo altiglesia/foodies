@@ -7,8 +7,9 @@ function NavBar({ isLoggedIn, setIsLoggedIn }) {
     }
 
     return (
-        <nav>
-            <ul>
+        <nav id="navbar">
+            <h1 className="foodies">foodies</h1>
+            <ul className="navlinks">
                 <NavLink to="/">home</NavLink>
                 <NavLink to="/crawl">crawl</NavLink>
                 <NavLink to="/faves">faves</NavLink>

@@ -3,20 +3,27 @@
 
 /* ========= NAVBAR STYLING ========== */
 
-.App nav {
-  top: 0px;
-  left: 0px;
-  max-height: 100px;
-  background-color: rgb(244, 244, 244);
+nav#navbar h1 {
+  z-index: 6;
+  position: fixed;
 }
 
-.App nav ul {
+nav ul {
+  margin-bottom: 25%;
+  top: 0;
+  z-index: 5;
+  position: fixed;
+  background-color: rgb(247, 247, 247);
   width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  margin-left: 25%;
-  padding: 0 30px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 20px -7px;
+  /* display: inline-block; */
 }
+
+/* @media screen {
+  nav ul {
+    position: fixed;
+  }
+} */
 
 .App nav ul a {
   color: rgba(207, 78, 78, 0.719);
@@ -28,8 +35,18 @@
   font-family: massilia, sans-serif;
   font-weight: 400;
   font-style: normal;
-  margin: 0;
 }
+
+ul.navlinks {
+  padding-left: 25%;
+  padding-right: 25%;
+  margin: 0px;
+  max-height: 85.09px;
+  /* background-color: rgb(244, 244, 244); */
+}
+
+
+/* ========= LOGO ========= */
 
 .foodies {
   font-size: 18px;
@@ -45,9 +62,9 @@
   z-index: 2;
 }
 
-/* ========= HOME STYLING ========= */
+/* ========= HOME & LOG-IN/OUT STYLING ========= */
 
-.create-an-account {
+.account {
   width: 100%;
   max-width: 580px;
   margin: 0 auto;
@@ -59,7 +76,7 @@
   border-radius: 4px;
 }
 
-.create-an-account h2 {
+.account h2 {
   font-size: 40px;
   font-family: massilia, sans-serif;
   font-weight: 400;
@@ -97,9 +114,9 @@
   width: 100%;
   max-width: 580px;
   margin: 0 auto;
+  margin-top: 5.5%;
   padding: 0 30px;
 }
-
 
 .restaurant-post {
   font-family: massilia, sans-serif;
@@ -112,6 +129,7 @@
   margin: 10px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   width: 560px;
+  background-color: rgb(255, 255, 255);
 }
 
 div.restaurant-post {
@@ -134,8 +152,6 @@ div.restaurant-post {
 }
 
 div.interactive-buttons {
-
-  /* height: 30px; */
   margin: 3px;
   display: inline-block;
   position: relative;
@@ -158,6 +174,9 @@ div.interactive-buttons {
   position: relative;
 }
 
+#comments-list {
+  list-style-type: none;
+}
 
 li#post-comments {
   max-width: 500px;

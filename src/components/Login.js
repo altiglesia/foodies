@@ -42,14 +42,14 @@ function Login({ isLoggedIn, setIsLoggedIn }) {
     }
 
     return (
-        <div className="form">
+        <div className="account">
             <h2>Login to your account!</h2>
             <form onSubmit={handleSubmit}>
                 <label>Username</label>
                 <input type="text" name="uname" className="form" required onChange={handleChange} value={formData.uname} />
                 <label>Password</label>
                 <input type="password" name="pass" className="form" required onChange={handleChange} value={formData.pass} />
-                <input type="submit" />
+                <input type="submit" id="submit-btn"/>
             </form>
         </div>
     )
