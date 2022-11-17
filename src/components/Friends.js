@@ -5,7 +5,7 @@ import FriendsListContainer from "./FriendsListContainer";
 function Friends({ restaurantData }) {
     return (
         <div>
-            <Map restaurantData={restaurantData} />
+            {/* <Map restaurantData={restaurantData} /> */}
             <FriendsListContainer />
         </div>
     )

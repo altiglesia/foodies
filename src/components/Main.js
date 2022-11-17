@@ -4,6 +4,7 @@ import Crawl from "./Crawl";
 import Faves from "./Faves";
 import Friends from "./Friends";
 import Judgie from "./Judgie";
+import Map from "./Map";
 import Login from "./Login";
 import { Routes, Route } from "react-router-dom";
 
@@ -67,6 +68,7 @@ function Main({ isLoggedIn, setIsLoggedIn }) {
             />} />
             <Route path="/faves" element={<Faves favoritedRestaurant={favoritedRestaurant} />} />
             <Route path="/friends" element={<Friends restaurantData={restaurantData} />} />
+            <Route path="/map" element={<Map />} />
             <Route path="/judgie" element={<Judgie />} />
             <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
         </Routes>
