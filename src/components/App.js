@@ -5,13 +5,11 @@ import Main from "./Main";
 // import { Route } from "react-router-dom"
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("user-token") ? true : false);
 
   return (
     <div className="App">
-      <link rel="stylesheet" href="https://use.typekit.net/nhq7iwi.css"></link>
-      <link rel="stylesheet" href="https://use.typekit.net/nhq7iwi.css"></link>
-      <link rel="stylesheet" href="https://use.typekit.net/nhq7iwi.css"></link>
+      <h1 className="foodies">foodies</h1>
       {/* set state of the context in useEffect of App */}
       <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Main isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />

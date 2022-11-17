@@ -49,7 +49,7 @@ function Home() {
                 <input type="password" name="pass" className="form" required onChange={handleChange} value={formData.pass} />
                 {/* <label>Password Confirm </label> */}
                 {/* <input type="password" name="passconf" className="form" required onChange={handleChange} value={formData.passconf} /> */}
-                <input type="submit" id="submit-btn"/>
+                <input type="submit" id="submit-btn" value="Create Account" />
             </form>
         </div>
     )

@@ -50,7 +50,7 @@ ul.navlinks {
 
 .foodies {
   font-size: 18px;
-  font-family: "Caflisch Script Pro";
+  font-family: "caflisch-script-pro";
   color: rgba(207, 78, 78, 0.85);
   line-height: 1.2;
   -moz-transform: matrix(5.09496618449703, 0, 0, 5.09496618449703, 0, 0);
@@ -153,10 +153,16 @@ div.restaurant-post {
 
 div.interactive-buttons {
   margin: 3px;
-  display: inline-block;
+  display: flex;
   position: relative;
   left: 70%;
   bottom: 2.85em;
+}
+
+div.likes,
+div.dislikes,
+div.favorite {
+  display: flex;
 }
 
 .interactive-buttons button {
