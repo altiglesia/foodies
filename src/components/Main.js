@@ -12,8 +12,10 @@ function Main({ isLoggedIn, setIsLoggedIn }) {
     const [restaurantData, setRestaurantData] = useState([]);
     const [favoritedRestaurant, setFavoritedRestaurant] = useState([]);
     const [goFetch, setGoFetch] = useState(false);
-    const [pageCount, setPageCount] = useState(1)
-    const resultsPerPage = 10
+    const [pageCount, setPageCount] = useState(1);
+    const [usersData, setUsersData] = useState([]);
+    const resultsPerPage = 10;
+    const currentUserId = parseInt(localStorage.getItem("user-token"));
 
     useEffect(() => {
         fetch(`http://localhost:9292/restaurants?limit=${resultsPerPage}&page=1`)
@@ -32,6 +34,12 @@ function Main({ isLoggedIn, setIsLoggedIn }) {
         fetchMoreItems()
     }, [goFetch])
     // Function to fetch more items and append the restaurant array to the current restaurantData state. Then sets goFetch to false and ups page count by 1.
+    useEffect(() => {
+        fetch(`http://localhost:9292/users/${currentUserId}/following`)
+            .then(res => res.json())
+            .then(data => setUsersData(data))
+    }, []);
+    
     function fetchMoreItems() {
         fetch(`http://localhost:9292/restaurants?limit=${resultsPerPage}&page=${pageCount + 1}`)
             .then(res => res.json())
@@ -67,7 +75,7 @@ function Main({ isLoggedIn, setIsLoggedIn }) {
                 reFetchAllRestaurants={reFetchAllRestaurants}
             />} />
             <Route path="/faves" element={<Faves favoritedRestaurant={favoritedRestaurant} />} />
-            <Route path="/friends" element={<Friends restaurantData={restaurantData} />} />
+            <Route path="/friends" element={<Friends usersData={usersData} />} />
             <Route path="/map" element={<Map />} />
             <Route path="/judgie" element={<Judgie />} />
             <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
