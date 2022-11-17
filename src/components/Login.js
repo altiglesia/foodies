@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 
-function Home() {
+function Login() {
     const [formData, setFormData] = useState({
         uname: "",
-        email: "",
-        pass: "",
-        passconf: ""
+        pass: ""
     })
     const navigate = useNavigate();
 
     function handleSubmit(e) {
-        e.preventDefault()
-        fetch(`http://localhost:9292/users/new`, {
+        e.preventDefault();
+        fetch(`http://localhost:9292/users/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -28,31 +26,32 @@ function Home() {
                     pass: "",
                     passconf: ""
                 })
-                navigate('/login');
+                if (res.message === "Success") {
+                    navigate('/crawl')
+                } else {
+                    alert("Error! Invalid login")
+                }
             })
             .catch(err => console.error(err))
-    }
 
+    }
     function handleChange(e) {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
     return (
         <div className="form">
-            <h2>Create an Account</h2>
+            <h2>Login to your account!</h2>
             <form onSubmit={handleSubmit}>
-                <label>Username </label>
+                <label>Username</label>
                 <input type="text" name="uname" className="form" required onChange={handleChange} value={formData.uname} />
-                <label>Email </label>
-                <input type="text" name="email" className="form" required onChange={handleChange} value={formData.email} />
-                <label>Password </label>
+                <label>Password</label>
                 <input type="password" name="pass" className="form" required onChange={handleChange} value={formData.pass} />
-                <label>Password Confirm </label>
-                <input type="password" name="passconf" className="form" required onChange={handleChange} value={formData.passconf} />
                 <input type="submit" />
             </form>
         </div>
     )
+
 }
 
-export default Home;
+export default Login

@@ -82,13 +82,13 @@ div.restaurant-post {
 
 
 #comments-section {
-  font-family: roboto,sans-serif;
+  font-family: roboto, sans-serif;
   font-weight: 300;
   font-style: normal;
 }
 
 div.interactive-buttons {
-  
+
   /* height: 30px; */
   margin: 3px;
   display: inline-block;
@@ -174,7 +174,7 @@ button.add-a-comment {
   font-weight: 300;
   font-style: normal;
   border: none;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; 
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border-radius: 2px;
 }
 
@@ -235,7 +235,13 @@ input.enter-a-zipcode {
 }
 
 .restaurantResultContainer span {
-  font-family: roboto,sans-serif;
+  font-family: roboto, sans-serif;
   font-weight: 300;
   font-style: normal;
+}
+
+
+.form {
+  display: block;
+  margin-left: 20%;
 }
