@@ -45,6 +45,53 @@
   z-index: 2;
 }
 
+/* ========= HOME STYLING ========= */
+
+.create-an-account {
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 0 30px;
+  border: 0.5px solid rgb(234, 234, 234);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border: 0.5px solid rgb(234, 234, 234);
+  border-radius: 4px;
+}
+
+.create-an-account h2 {
+  font-size: 40px;
+  font-family: massilia, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: rgba(207, 78, 78, 0.85);
+}
+
+.form {
+  width: 100%;
+  max-width: 550px;
+  margin: 10px;
+  border: 0.5px solid rgb(234, 234, 234);
+  border-radius: 4px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 20px;
+  font-family: roboto, sans-serif;
+  border: 0.5px solid rgb(234, 234, 234);
+}
+
+#submit-btn {
+  font-family: massilia, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  color: #337ab7;
+  background-color: transparent;
+  border: 0.5px solid rgb(234, 234, 234);
+  border-radius: 4px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 /* ========= CRAWL STYLING ========== */
 #crawl {
   width: 100%;
@@ -65,8 +112,6 @@
   margin: 10px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   width: 560px;
-  /* position: relative;
-  top: 1em; */
 }
 
 div.restaurant-post {
@@ -201,7 +246,7 @@ input.enter-a-zipcode {
   height: 35px;
 }
 
-/* RESTAURANT SEARCH RESULT */
+/* ========= RESTAURANT SEARCH RESULTS ========= */
 
 .restaurantResultContainer {
   border: 1px solid transparent;
