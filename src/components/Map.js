@@ -298,7 +298,7 @@ function Map() {
                     <input id="searchZipCode" type="number" step="1" size="5" min="10001" max="10282" placeholder="Enter a Manhattan ZipCode"></input>
                     <input className="enter-a-zipcode" type="submit"></input>
                 </form>
-                {nearestRestaurants.slice(0, 6).map(restaurant => {
+                {nearestRestaurants.map(restaurant => {
                     return (<RestaurantSearchResult
                         key={restaurant.id}
                         restaurant={restaurant}

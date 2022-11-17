@@ -232,14 +232,24 @@ div#nearby-restaurant-list {
   margin-left: 1%
 }
 
+div#nearby-restaurant-list.map {
+  width: 20%;
+  margin-left: 1%;
+  margin-top: 5%;
+  overflow-y: scroll;
+  height: 90vh;
+}
+
 div#map-view {
   width: 69%;
 }
 
 
 .leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
-  width: 68.4vw;
+  width: 80vw;
   height: 100vh;
+  margin-top: 10%;
+  z-index: 4;
 }
 
 

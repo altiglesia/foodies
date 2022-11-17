@@ -1,12 +1,14 @@
 import React from "react";
-import Map from "./Map";
-import FriendsListContainer from "./FriendsListContainer";
+import FriendCard from "./FriendCard";
 
-function Friends({ restaurantData }) {
+function Friends({ usersData }) {
     return (
         <div>
-            {/* <Map restaurantData={restaurantData} /> */}
-            <FriendsListContainer />
+            {usersData.map(user => {
+                return (
+                <FriendCard user={user} key={user.id}/>
+                )
+            })}
         </div>
     )
 }
