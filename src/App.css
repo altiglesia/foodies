@@ -125,23 +125,23 @@ div.restaurant-post {
   margin: 35px;
 }
 
-#restaurant-name {
-  margin-left: 10px;
+div.restaurant-post h3 {
+  margin-left: 1%;
 }
 
 #restaurant-location {
-  margin-left: 5px;
+  margin-left: 1%;
   margin-bottom: 2px;
   width: 50%;
   float: left;
 }
 
-
 div.interactive-buttons {
-  margin: 3px;
+  /* margin: 1%; */
   display: flex;
   position: relative;
   left: 22%;
+  width: 155px;
 }
 
 div.likes,
@@ -182,7 +182,7 @@ div.favorite {
 }
 
 #comments-list li {
-  padding: 0;
+  padding: 20px 12px 1px 12px;
 }
 
 /* li#post-comments {
