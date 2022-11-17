@@ -131,21 +131,17 @@ div.restaurant-post {
 
 #restaurant-location {
   margin-left: 5px;
+  margin-bottom: 2px;
+  width: 50%;
+  float: left;
 }
 
-
-#comments-section {
-  font-family: roboto, sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
 
 div.interactive-buttons {
   margin: 3px;
   display: flex;
   position: relative;
-  left: 70%;
-  bottom: 2.85em;
+  left: 22%;
 }
 
 div.likes,
@@ -169,13 +165,29 @@ div.favorite {
   position: relative;
 }
 
-#comments-list {
-  list-style-type: none;
+#comments-section {
+  font-family: roboto, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 15px;
+  display: inline;
+  position: relative;
 }
 
-li#post-comments {
-  max-width: 500px;
+#comments-list {
+  list-style-type: none;
+  position: relative;
+  margin: 0;
+  padding: 0;
 }
+
+#comments-list li {
+  padding: 0;
+}
+
+/* li#post-comments {
+  max-width: 500px;
+} */
 
 input.add-a-comment {
   font-family: roboto, sans-serif;
