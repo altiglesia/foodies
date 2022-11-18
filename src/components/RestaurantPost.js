@@ -6,10 +6,6 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
     const [commentData, setCommentData] = useState({});
     const currentUserId = parseInt(localStorage.getItem("user-token"));
 
-    function saveFaveRestaurantClick() {
-        saveFaveRestaurant(restaurant)
-    }
-
     function handleChange(e) {
         setCommentData({
             restaurant_id: restaurant.id,
@@ -54,6 +50,24 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
             .then(() => reFetchAllRestaurants());
     }
 
+    // function saveFaveRestaurantClick(e) {
+    //     const isFavorited = restaurant.reviews.filter(el => el.user_id === currentUserId)
+    // }
+    
+    console.log("hey")
+    fetch(`http://localhost:9292/reviews?user=${currentUserId}&restaurant=${restaurant.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            user_id: currentUserId,
+            restaurant_id: restaurant.id,
+            "favorited?": true
+        })
+    })
+        .then(res => res.json())
+        .then(() => saveFaveRestaurant())
     // Calculates number of likes and dislikes from the restaurant reviews
     const numOfLikes = restaurant.reviews.filter(el => el.likes === true).length
     const numOfDislikes = restaurant.reviews.filter(el => el.dislikes === true).length
@@ -123,7 +137,7 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
                     <button>{numOfDislikes}</button>
                 </div>
                 <div className="favorite">
-                    <button onClick={saveFaveRestaurantClick}><FiStar /></button>
+                    {/* <button onClick={saveFaveRestaurantClick}><FiStar /></button> */}
                 </div>
             </div>
             <div id="comments-section">
