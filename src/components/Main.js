@@ -72,7 +72,7 @@ function Main({ isLoggedIn, setIsLoggedIn }) {
 
 
     function saveFaveRestaurant(fave) {
-        setFavoritedRestaurant([...favoritedRestaurant, fave]);
+        setFavesList([...favesList, fave]);
     };
 
 

@@ -6,9 +6,7 @@ function Faves({ favesList }) {
         <div>
             {favesList.map(fave => {
                 return (
-                    <div>
-                        <FaveCard fave={fave} key={fave.id} />
-                    </div>
+                    <FaveCard fave={fave} key={fave.id} />
                 )
             })}
         </div>

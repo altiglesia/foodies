@@ -6,7 +6,7 @@ function Friends({ usersData }) {
         <div>
             {usersData.map(user => {
                 return (
-                <FriendCard user={user} key={user.id}/>
+                    <FriendCard user={user} key={user.id}/>
                 )
             })}
         </div>
