@@ -326,7 +326,7 @@ div#map-view {
 .leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
   width: 80vw;
   height: 100vh;
-  margin-top: 10%;
+  margin-top: 5%;
   z-index: 4;
 }
 

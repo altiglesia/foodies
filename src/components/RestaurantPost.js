@@ -48,7 +48,6 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
             .then(res => res.json())
             .then(() => reFetchAllRestaurants())
         e.target.comment.value = ""
-
     }
 
     const imageGallery = restaurant.images.map(image => {
