@@ -40,12 +40,13 @@ nav ul {
 }
 
 ul.navlinks {
-  padding-left: 29%;
+  padding-left: 25%;
   padding-right: 25%;
-  padding-bottom: 0.25%;
+  padding-bottom: 0.05%;
   padding-top: 0.05%;
   margin: 0px;
   max-height: 85.09px;
+  position: relative;
 }
 
 
