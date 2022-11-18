@@ -54,20 +54,20 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
     //     const isFavorited = restaurant.reviews.filter(el => el.user_id === currentUserId)
     // }
     
-    console.log("hey")
-    fetch(`http://localhost:9292/reviews?user=${currentUserId}&restaurant=${restaurant.id}`, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            user_id: currentUserId,
-            restaurant_id: restaurant.id,
-            "favorited?": true
-        })
-    })
-        .then(res => res.json())
-        .then(() => saveFaveRestaurant())
+    // console.log("hey")
+    // fetch(`http://localhost:9292/reviews?user=${currentUserId}&restaurant=${restaurant.id}`, {
+    //     method: "PATCH",
+    //     headers: {
+    //         "Content-Type": "application/json"
+    //     },
+    //     body: JSON.stringify({
+    //         user_id: currentUserId,
+    //         restaurant_id: restaurant.id,
+    //         "favorited?": true
+    //     })
+    // })
+    //     .then(res => res.json())
+    //     .then(() => saveFaveRestaurant())
     // Calculates number of likes and dislikes from the restaurant reviews
     const numOfLikes = restaurant.reviews.filter(el => el.likes === true).length
     const numOfDislikes = restaurant.reviews.filter(el => el.dislikes === true).length
@@ -80,6 +80,7 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
         // Does current user have a review of the restaurant?
         const hasUserReviewed = restaurant.reviews.filter(el => el.user_id === currentUserId).length === 0 ? false : true;
         const likeOrDislike = e.target.parentElement.className;
+        // const favorite = e.target.parentElement.className;
         console.log(e.target.parentElement.className, "restaurant", restaurant.id, "has user reviewed?", hasUserReviewed);
         hasUserReviewed ? runPatchRequest(likeOrDislike) : runPostRequest(likeOrDislike);
     }
@@ -137,7 +138,7 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
                     <button>{numOfDislikes}</button>
                 </div>
                 <div className="favorite">
-                    {/* <button onClick={saveFaveRestaurantClick}><FiStar /></button> */}
+                    <button onClick={handleLikeClick}><FiStar /></button>
                 </div>
             </div>
             <div id="comments-section">
