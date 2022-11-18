@@ -10,6 +10,7 @@ import { Routes, Route } from "react-router-dom";
 
 function Main({ isLoggedIn, setIsLoggedIn }) {
     const [restaurantData, setRestaurantData] = useState([]);
+    const [favesList, setFavesList] = useState([]);
     const [favoritedRestaurant, setFavoritedRestaurant] = useState([]);
     const [goFetch, setGoFetch] = useState(false);
     const [pageCount, setPageCount] = useState(1);
@@ -38,7 +39,15 @@ function Main({ isLoggedIn, setIsLoggedIn }) {
         fetch(`http://localhost:9292/users/${currentUserId}/following`)
             .then(res => res.json())
             .then(data => setUsersData(data))
+            .catch(err => console.error(err))
     }, []);
+
+    useEffect(() => {
+        fetch(`http://localhost:9292/users/13/faves`)
+            .then(res => res.json())
+            .then(data => setFavesList(data))
+            .catch(err => console.error(err))
+    }, [])
     
     function fetchMoreItems() {
         fetch(`http://localhost:9292/restaurants?limit=${resultsPerPage}&page=${pageCount + 1}`)
@@ -61,6 +70,7 @@ function Main({ isLoggedIn, setIsLoggedIn }) {
             .catch(err => console.error(err))
     }
 
+
     function saveFaveRestaurant(fave) {
         setFavoritedRestaurant([...favoritedRestaurant, fave]);
     };
@@ -74,7 +84,7 @@ function Main({ isLoggedIn, setIsLoggedIn }) {
                 saveFaveRestaurant={saveFaveRestaurant}
                 reFetchAllRestaurants={reFetchAllRestaurants}
             />} />
-            <Route path="/faves" element={<Faves favoritedRestaurant={favoritedRestaurant} />} />
+            <Route path="/faves" element={<Faves favesList={favesList} />} />
             <Route path="/friends" element={<Friends usersData={usersData} />} />
             <Route path="/map" element={<Map />} />
             <Route path="/judgie" element={<Judgie />} />
