@@ -110,24 +110,6 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
             })
     }, [starIsClicked])
 
-    function runFavePost(favorite) {
-        console.log("running fave post")
-    }
-
-    // console.log("hey")
-    // fetch(`http://localhost:9292/reviews?user=${currentUserId}&restaurant=${restaurant.id}`, {
-    //     method: "PATCH",
-    //     headers: {
-    //         "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify({
-    //         user_id: currentUserId,
-    //         restaurant_id: restaurant.id,
-    //         "favorited?": true
-    //     })
-    // })
-    //     .then(res => res.json())
-    //     .then(() => saveFaveRestaurant())
 
 
 
@@ -185,16 +167,16 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
             <h4 id="restaurant-location">Neighborhood: {restaurant.neighborhood}</h4>
             <div className="interactive-buttons">
                 <div className="likes">
-                    <FiThumbsUp onClick={handleLikeClick} size={30} style={isLike ? { fill: "green" } : null} />
+                    <FiThumbsUp onClick={handleLikeClick} size={30} style={isLike ? { fill: "black" } : null} />
                     <button>{numOfLikes}</button>
                 </div>
                 <div className="dislikes">
-                    <FiThumbsDown onClick={handleLikeClick} size={30} style={isDislike ? { fill: "red" } : null} />
+                    <FiThumbsDown onClick={handleLikeClick} size={30} style={isDislike ? { fill: "black" } : null} />
                     <button>{numOfDislikes}</button>
                 </div>
                 <div >
                     <button className="favorited?">
-                        <FiStar onClick={handleFaveClick} size={30} style={isFave ? { fill: "gold" } : null} />
+                        <FiStar onClick={handleFaveClick} size={30} style={isFave ? { fill: "black" } : null} />
                     </button>
                 </div>
             </div>

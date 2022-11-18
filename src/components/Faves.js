@@ -13,7 +13,7 @@ function Faves() {
     }, [])
 
     return (
-        <div>
+        <div className="faves">
             {favesList.map(fave => {
                 return (
                     <FaveCard fave={fave} key={fave.id} />

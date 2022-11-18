@@ -295,7 +295,7 @@ function Map() {
             <div id="nearby-restaurant-list" className="map">
                 <h3 className="enter-a-zipcode">Where to judgie?</h3>
                 <form onSubmit={handleSubmit} className="enter-a-zipcode">
-                    <input id="searchZipCode" type="number" step="1" size="5" min="10001" max="10282" placeholder="Enter a Manhattan ZipCode"></input>
+                    <input id="searchZipCode" type="number" step="1" size="5" min="10001" max="11256" placeholder="Enter a Manhattan/Brooklyn ZipCode"></input>
                     <input className="enter-a-zipcode" type="submit"></input>
                 </form>
                 {nearestRestaurants.map(restaurant => {
