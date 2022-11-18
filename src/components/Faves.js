@@ -1,16 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import FaveCard from "./FaveCard";
 
-function Faves() {
+function Faves({ favesList, setFavesList }) {
     const currentUserId = parseInt(localStorage.getItem("user-token"));
-    const [favesList, setFavesList] = useState([]);
-
-    useEffect(() => {
-        fetch(`http://localhost:9292/users/${currentUserId}/faves`)
-            .then(res => res.json())
-            .then(data => setFavesList(data))
-            .catch(err => console.error(err))
-    }, [])
 
     return (
         <div>
