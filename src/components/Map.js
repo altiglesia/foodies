@@ -278,7 +278,7 @@ function Map() {
         fetch(`http://localhost:9292/restaurants/search?zipcode=${zipCodeEntered}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 setNearestRestaurants(data)
             })
     }, [zipCodeEntered])
