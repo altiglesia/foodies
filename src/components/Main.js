@@ -43,12 +43,12 @@ function Main({ isLoggedIn, setIsLoggedIn }) {
     }, []);
 
     useEffect(() => {
-        fetch(`http://localhost:9292/users/13/faves`)
+        fetch(`http://localhost:9292/users/${currentUserId}/faves`)
             .then(res => res.json())
             .then(data => setFavesList(data))
             .catch(err => console.error(err))
     }, [])
-    
+
     function fetchMoreItems() {
         fetch(`http://localhost:9292/restaurants?limit=${resultsPerPage}&page=${pageCount + 1}`)
             .then(res => res.json())
