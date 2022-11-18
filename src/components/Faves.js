@@ -5,7 +5,7 @@ function Faves({ favesList, setFavesList }) {
     const currentUserId = parseInt(localStorage.getItem("user-token"));
 
     return (
-        <div>
+        <div className="faves">
             {favesList.map(fave => {
                 return (
                     <FaveCard fave={fave} key={fave.id} />

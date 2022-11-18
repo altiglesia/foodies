@@ -3,7 +3,7 @@ import FriendCard from "./FriendCard";
 
 function Friends({ usersData }) {
     return (
-        <div>
+        <div className="friends">
             {usersData.map(user => {
                 return (
                     <FriendCard user={user} key={user.id}/>

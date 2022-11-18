@@ -7,7 +7,6 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
 
     // Calculates number of likes and dislikes from the restaurant reviews
     const numOfLikes = restaurant.reviews.filter(el => el.likes === true).length
-    // console.log(numOfLikes)
     const numOfDislikes = restaurant.reviews.filter(el => el.dislikes === true).length
 
     // Does current user like or dislike a particular restaurant?
@@ -21,9 +20,8 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
     const [starIsClicked, setStarIsClicked] = useState(false);
     const [userReview, setUserReview] = useState({
         "likes": isLike,
-        "dislikes": !isLike,
-        "favorited?": isFave
-    })
+        "dislikes": !isLike
+    });
 
     function handleChange(e) {
         setCommentData({
@@ -69,6 +67,34 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
             .then(() => reFetchAllRestaurants());
     }
 
+ function handleFaveClick(e) {
+        const hasUserReviewed = restaurant.reviews.filter(el => el.user_id === currentUserId).length === 0 ? false : true;
+        const favorite = e.target.parentElement.parentElement.className;
+        console.log(favorite, "restaurant", restaurant.id, "has user reviewed?", hasUserReviewed);
+
+        setFavoritedRestaurant(!favoritedRestaurant);
+        setStarIsClicked(!starIsClicked)
+  }
+ 
+     useEffect(() => {
+        fetch(`http://localhost:9292/reviews?user=${currentUserId}&restaurant=${restaurant.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                user_id: currentUserId,
+                restaurant_id: restaurant.id,
+                "favorited?": favoritedRestaurant
+            })
+        })
+            .then(res => res.json())
+            .then(savedFaveObj => {
+                saveFaveRestaurant(savedFaveObj)
+                reFetchAllRestaurants()
+            })
+    }, [starIsClicked])
+    
     useEffect(() => {
         fetch(`http://localhost:9292/restaurant/${restaurant.id}/reviews`, {
             method: "POST",
@@ -87,7 +113,6 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
                 reFetchAllRestaurants()
             })
     }, [starIsClicked])
-
 
     function handleLikeClick(e) {
 
@@ -111,6 +136,53 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
             .then(() => reFetchAllRestaurants())
     }
 
+    // function handleLikeClick(e) {
+    //     // Does current user have a review of the restaurant?
+    //     const hasUserReviewed = restaurant.reviews.filter(el => el.user_id === currentUserId).length === 0 ? false : true;
+    //     const likeOrDislike = e.target.parentElement.className;
+    //     // const favorite = e.target.parentElement.className;
+    //     console.log(e.target.parentElement.className, "restaurant", restaurant.id, "has user reviewed?", hasUserReviewed);
+    //     hasUserReviewed ? runPatchRequest(likeOrDislike) : runPostRequest(likeOrDislike);
+    // }
+
+    // function runPatchRequest(likeOrDislike) {
+    //     const notLikeOrDislike = likeOrDislike === "likes" ? "dislikes" : "likes";
+
+    //     console.log("running patch")
+    //     fetch(`http://localhost:9292/reviews?user=${currentUserId}&restaurant=${restaurant.id}`, {
+    //         method: "PATCH",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify({
+    //             [likeOrDislike]: true,
+    //             [notLikeOrDislike]: false,
+    //         })
+    //     })
+    //         .then(res => res.json())
+    //         .then(() => reFetchAllRestaurants())
+    // }
+
+    // function runPostRequest(likeOrDislike) {
+    //     console.log('running post')
+    //     const notLikeOrDislike = likeOrDislike === "likes" ? "dislikes" : "likes";
+
+    //     fetch(`http://localhost:9292/restaurant/${restaurant.id}/reviews`, {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify({
+    //             user_id: currentUserId,
+    //             restaurant_id: restaurant.id,
+    //             [likeOrDislike]: true,
+    //             [notLikeOrDislike]: false,
+    //         })
+    //     })
+    //         .then(res => res.json())
+    //         .then(() => reFetchAllRestaurants())
+    // }
+
     return (
         <div className="restaurant-post">
             <h3 id="restaurant-name">{restaurant.name}</h3>
@@ -118,15 +190,17 @@ function RestaurantPost({ restaurant, saveFaveRestaurant, reFetchAllRestaurants 
             <h4 id="restaurant-location">Neighborhood: {restaurant.neighborhood}</h4>
             <div className="interactive-buttons">
                 <div className="likes">
-                    <FiThumbsUp onClick={handleLikeClick} size={30} style={userReview.likes ? { fill: "green" } : null} />
+                    <FiThumbsUp onClick={handleLikeClick} size={30} style={userReview.likes ? { fill: "#AAF0D1" } : null} />
                     <button>{numOfLikes}</button>
                 </div>
                 <div className="dislikes">
-                    <FiThumbsDown onClick={handleLikeClick} size={30} style={userReview.dislikes ? { fill: "red" } : null} />
+                    <FiThumbsDown onClick={handleLikeClick} size={30} style={userReview.dislikes ? { fill: "#F38484" } : null} />
                     <button>{numOfDislikes}</button>
                 </div>
-                <div className="favorited?">
-                    <FiStar onClick={handleLikeClick} size={30} style={userReview["favorited?"] ? { fill: "gold" } : null} />
+                <div >
+                    <button className="favorited?">
+                        <FiStar onClick={handleFaveClick} size={30} style={isFave ? { fill: "#FFEA61" } : null} />
+                    </button>
                 </div>
             </div>
             <div id="comments-section">
